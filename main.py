@@ -227,7 +227,7 @@ if __name__ == "__main__":
         os.makedirs(save_dir, exist_ok=True)
         model, _ = train(model, device, train_loaders[i], val_loaders[i], scalers[i], 
                         optimizer, scheduler, criterion, args.max_epochs, args.patience, logger=logger)
-
+        test(model, device, test_loaders[i], scalers[i], logger=logger)
         torch.save(model.state_dict(), os.path.join(save_dir, "model.pt"))
     
     logger.info("Training complete!")
